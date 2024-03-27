@@ -8,6 +8,7 @@ class Bloomberg extends Article {
       const $ = load(this.html);
       $(".inline-newsletter-top").remove();
       const article = await extractFromHtml($?.html());
+      console.log("🧐ELowen - Article - parseContent - article:", article)
       return article;
     } catch (error) {
       throw new Error(`Error parsing content: ${error.message}`);

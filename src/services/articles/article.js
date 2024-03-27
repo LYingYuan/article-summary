@@ -11,7 +11,7 @@ class Article {
   async parseContent() {
     try {
       const article = await extractFromHtml(this.html);
-
+      console.log("🧐ELowen - Article - parseContent -  article:", article);
       return article?.content;
     } catch (error) {
       throw new Error(`Error parsing content: ${error.message}`);
@@ -22,8 +22,7 @@ class Article {
     try {
       const content = await this.parseContent();
       const summary = await chatWithLLM(content, this.llmApiConfig);
-      console.log("🧐ELowen - Article - summarize - summary:", summary);
-
+      // 超过 10s 重新请求或返回请求失败
       return summary;
     } catch (error) {
       console.error(`Error summarizing content: ${error.message}`);
